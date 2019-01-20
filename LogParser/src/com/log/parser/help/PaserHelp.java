@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import com.log.parser.db.entity.LogEntity;
+import com.log.parser.domain.entity.LogEntity;
 import com.log.parser.pojo.ParametersPojo;
 
 

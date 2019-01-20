@@ -2,8 +2,8 @@ package com.log.parser.control;
 
 import java.util.List;
 
-import com.log.parser.db.entity.LogEntity;
-import com.log.parser.db.persistence.LogPersistence;
+import com.log.parser.domain.dao.LogDAO;
+import com.log.parser.domain.entity.LogEntity;
 
 
 /**
@@ -32,7 +32,7 @@ public class ParserBase {
 		int dbreturn = 0;
 
 		for (LogEntity logEntity : logList) {
-			dbreturn = new LogPersistence().incluirLogEntity(logEntity);
+			dbreturn = new LogDAO().incluirLogEntity(logEntity);
 		}
 		return dbreturn;
 	}

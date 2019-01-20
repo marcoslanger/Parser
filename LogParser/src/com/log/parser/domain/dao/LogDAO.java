@@ -1,9 +1,9 @@
-package com.log.parser.db.persistence;
+package com.log.parser.domain.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import com.log.parser.db.entity.LogEntity;
+import com.log.parser.domain.entity.LogEntity;
 import com.log.parser.help.DBHelp;
 
 
@@ -13,7 +13,7 @@ import com.log.parser.help.DBHelp;
  * @author Marcos
  *
  */
-public class LogPersistence {
+public class LogDAO {
 
 	private static final String INSERT_LOG = "insert into parserdb.parser_log (ip, requests, comment, period) values (?, ?, ?, ?)";
 

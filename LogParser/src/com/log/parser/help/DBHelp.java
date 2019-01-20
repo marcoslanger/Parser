@@ -1,8 +1,11 @@
 package com.log.parser.help;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 
 /**
@@ -13,12 +16,16 @@ import java.sql.SQLException;
  */
 public class DBHelp {
 	
-	public static final String MYSQL_DRIVER = "com.mysql.jdbc.Driver";
-	public static final String SERVER_NAME = "localhost";
-	public static final String DATABASE = "mysql";
-	public static final String CONNECTION_STR = "jdbc:mysql://";
-	public static final String USERNAME = "root";
-	public static final String PASSWORD = "adm";
+	private static final String MYSQL_DRIVER = "mysql_driver";
+	private static final String SERVER_NAME = "server_name";
+	private static final String DATABASE = "database";
+	private static final String CONNECTION_STR = "connection_str";
+	private static final String USERNAME = "username";
+	private static final String PASSWORD = "password";
+	
+	private static final String APP_PROPS = "resources/application.properties";
+	
+	private static Properties prop = null;
 	
 	
 	/**
@@ -27,13 +34,15 @@ public class DBHelp {
 	 * @return conecction a connection.
 	 */
 	public static Connection getConexaoMySQL() {
-
+		
+		
 		Connection connection = null;
 
-		try {			
+		try {	
+			prop = loadProperties();
 			Class.forName(MYSQL_DRIVER);			
-			String url = CONNECTION_STR + SERVER_NAME + "/" + DATABASE;	
-			connection = DriverManager.getConnection(url, USERNAME, PASSWORD);
+			String url = prop.getProperty(CONNECTION_STR) + prop.getProperty(SERVER_NAME) + "/" + prop.getProperty(DATABASE);	
+			connection = DriverManager.getConnection(url, prop.getProperty(USERNAME), prop.getProperty(PASSWORD));
 
 			return connection;
 
@@ -45,6 +54,36 @@ public class DBHelp {
 			System.out.println(MessagesHelp.SQL_ERROR);
 			return null;
 		}
+	}
+	
+	private static Properties loadProperties() {
+		
+		Properties prop = new Properties();
+    	InputStream input = null;    	
+    	
+    	try {        
+    		
+    		input = DBHelp.class.getClassLoader().getResourceAsStream(APP_PROPS);
+    		
+    		if(input == null) {
+    	            System.out.println("Sorry, unable to find " + APP_PROPS);
+    		}
+
+    		//load a properties file from class path, inside static method
+    		prop.load(input);    		
+ 
+    	} catch (IOException ex) {
+    		System.out.println(MessagesHelp.READ_ERROR);
+        } finally {
+        	if (input != null) {
+        		try {
+				input.close();
+				} catch (IOException e) {
+					System.out.println(MessagesHelp.READ_ERROR);
+				}
+        	}
+        }
+    	return prop;
 	}
 
 }

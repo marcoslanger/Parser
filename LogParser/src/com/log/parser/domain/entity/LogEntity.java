@@ -1,4 +1,4 @@
-package com.log.parser.db.entity;
+package com.log.parser.domain.entity;
 
 
 /**
