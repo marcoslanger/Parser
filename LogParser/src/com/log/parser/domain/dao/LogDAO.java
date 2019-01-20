@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import com.log.parser.domain.entity.LogEntity;
-import com.log.parser.help.DBHelp;
+import com.log.parser.util.DBUtils;
 
 
 /**
@@ -30,7 +30,7 @@ public class LogDAO {
 		int dbreturn = 0;
 
 		try {
-			ps = DBHelp.getConexaoMySQL().prepareStatement(INSERT_LOG);
+			ps = DBUtils.getConexaoMySQL().prepareStatement(INSERT_LOG);
 			ps.setString(1, log.getIp());
 			ps.setInt(2, log.getRequests().intValue());
 			ps.setString(3, log.getComment());

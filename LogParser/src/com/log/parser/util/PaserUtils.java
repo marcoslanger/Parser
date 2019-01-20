@@ -1,4 +1,4 @@
-package com.log.parser.help;
+package com.log.parser.util;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,7 +16,7 @@ import com.log.parser.pojo.ParametersPojo;
  * @author Marcos
  *
  */
-public class PaserHelp {
+public class PaserUtils {
 	
 	public static final String CMD_FILE = "--accesslog";
 	public static final String CMD_START = "--startDate";
@@ -39,12 +39,12 @@ public class PaserHelp {
 
 		if (args.length == ZERO) {
 			
-			System.out.println(MessagesHelp.NO_ARGS);
+			System.out.println(MessagesUtils.NO_ARGS);
 			System.exit(ZERO);
 			
 		} else if (args.length < ARGS_SIZE) {
 			
-			System.out.println(MessagesHelp.MISS_ARGS);
+			System.out.println(MessagesUtils.MISS_ARGS);
 			System.exit(ZERO);
 		}
 
@@ -62,7 +62,7 @@ public class PaserHelp {
 				
 			} else {
 				
-				System.out.println(MessagesHelp.MALFORMED);
+				System.out.println(MessagesUtils.MALFORMED);
 				System.exit(ZERO);
 			}
 		}
@@ -109,12 +109,12 @@ public class PaserHelp {
 			if (counts.get(ip) >= params.getThreshold()) {
 				
 				//prints the found ips to the output.
-				System.out.println(MessagesHelp.IPS_FOUND + ip + MessagesHelp.TOTAL_REQ + counts.get(ip));
+				System.out.println(MessagesUtils.IPS_FOUND + ip + MessagesUtils.TOTAL_REQ + counts.get(ip));
 				
 				LogEntity log = new LogEntity();
 				log.setIp(ip);
 				log.setRequests(counts.get(ip).intValue());
-				log.setComment(MessagesHelp.COMMENT);
+				log.setComment(MessagesUtils.COMMENT);
 				log.setPeriod(params.getStartDate()[ZERO] + " " + params.getStartDate()[ONE]);
 				logList.add(log);
 			}

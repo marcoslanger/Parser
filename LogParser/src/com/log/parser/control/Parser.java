@@ -7,9 +7,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.log.parser.help.MessagesHelp;
-import com.log.parser.help.PaserHelp;
 import com.log.parser.pojo.ParametersPojo;
+import com.log.parser.util.MessagesUtils;
+import com.log.parser.util.PaserUtils;
 
 
 /**
@@ -35,7 +35,7 @@ public class Parser extends ParserBase {
 
 		try {
 
-			params = PaserHelp.fillArguments(args);			
+			params = PaserUtils.fillArguments(args);			
 			br = new BufferedReader(new FileReader(params.getAccesslog()));
 			ipList = new ArrayList<String>();
 
@@ -50,17 +50,17 @@ public class Parser extends ParserBase {
 
 				String[] splitedDateTime = splitedStr[DATETIME].split("\\ ");
 
-				if (params.getDuration().equals(DURATION_TYPE[PaserHelp.ZERO])
-						&& splitedDateTime[PaserHelp.ZERO].equals(params.getStartDate()[PaserHelp.ZERO])) {
+				if (params.getDuration().equals(DURATION_TYPE[PaserUtils.ZERO])
+						&& splitedDateTime[PaserUtils.ZERO].equals(params.getStartDate()[PaserUtils.ZERO])) {
 					
 					//ip found by daily criteria.
 					
 					ipList.add(splitedStr[IP]);
 
-				} else if (params.getDuration().equals(DURATION_TYPE[PaserHelp.ONE])
-						&& (splitedDateTime[PaserHelp.ZERO].equals(params.getStartDate()[PaserHelp.ZERO])
-								&& splitedDateTime[PaserHelp.ONE].split("\\:")[PaserHelp.ZERO]
-										.equals(params.getStartDate()[PaserHelp.ONE].split("\\:")[PaserHelp.ZERO]))) {
+				} else if (params.getDuration().equals(DURATION_TYPE[PaserUtils.ONE])
+						&& (splitedDateTime[PaserUtils.ZERO].equals(params.getStartDate()[PaserUtils.ZERO])
+								&& splitedDateTime[PaserUtils.ONE].split("\\:")[PaserUtils.ZERO]
+										.equals(params.getStartDate()[PaserUtils.ONE].split("\\:")[PaserUtils.ZERO]))) {
 					
 					//ip found by the hourly criteria.
 					
@@ -72,12 +72,12 @@ public class Parser extends ParserBase {
 			// calls the persistence method by passing a list of log
 			// entities found in the query specified in the command line.
 
-			persistLog(PaserHelp.fillLogEntities(ipList, params));
+			persistLog(PaserUtils.fillLogEntities(ipList, params));
 
 		} catch (FileNotFoundException e) {
-			System.out.println(MessagesHelp.FILE_NOT_FOUND + params.getAccesslog());
+			System.out.println(MessagesUtils.FILE_NOT_FOUND + params.getAccesslog());
 		} catch (IOException ex) {
-			System.out.println(MessagesHelp.READ_ERROR);
+			System.out.println(MessagesUtils.READ_ERROR);
 		} finally {
 
 			try {
@@ -87,7 +87,7 @@ public class Parser extends ParserBase {
 				}				
 
 			} catch (IOException ex) {
-				System.out.println(MessagesHelp.READ_ERROR);
+				System.out.println(MessagesUtils.READ_ERROR);
 			}
 		}
 	}

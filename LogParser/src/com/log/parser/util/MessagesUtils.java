@@ -1,4 +1,4 @@
-package com.log.parser.help;
+package com.log.parser.util;
 
 
 /**
@@ -7,7 +7,7 @@ package com.log.parser.help;
  * @author Marcos
  *
  */
-public class MessagesHelp {
+public class MessagesUtils {
 	
 	//db messages
 	public static final String NOT_FOUND = "Specified driver not found.";
