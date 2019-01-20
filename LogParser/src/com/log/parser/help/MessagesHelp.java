@@ -1,5 +1,6 @@
 package com.log.parser.help;
 
+
 /**
  * Class to store application messages.
  * 

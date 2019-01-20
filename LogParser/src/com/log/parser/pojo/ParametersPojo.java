@@ -1,5 +1,6 @@
 package com.log.parser.pojo;
 
+
 /**
  * Class to store the command line parameters.
  * 

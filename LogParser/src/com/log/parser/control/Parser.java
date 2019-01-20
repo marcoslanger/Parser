@@ -11,6 +11,7 @@ import com.log.parser.help.MessagesHelp;
 import com.log.parser.help.PaserHelp;
 import com.log.parser.pojo.ParametersPojo;
 
+
 /**
  * Class responsible for parsing a log file and finding information
  * according to criteria passed by the command line.

@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import com.log.parser.db.entity.LogEntity;
 import com.log.parser.help.DBHelp;
 
+
 /**
  * Class that controls the persistence of the log in the database.
  * 

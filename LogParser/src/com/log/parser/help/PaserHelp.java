@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import com.log.parser.db.entity.LogEntity;
 import com.log.parser.pojo.ParametersPojo;
 
+
 /**
  * Class to help in parsing log lines.
  * 

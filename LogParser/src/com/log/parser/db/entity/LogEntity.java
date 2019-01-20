@@ -1,5 +1,6 @@
 package com.log.parser.db.entity;
 
+
 /**
  * A class that represents a log entity in the database.
  * 

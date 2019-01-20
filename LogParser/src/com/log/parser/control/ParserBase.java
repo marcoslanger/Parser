@@ -5,6 +5,7 @@ import java.util.List;
 import com.log.parser.db.entity.LogEntity;
 import com.log.parser.db.persistence.LogPersistence;
 
+
 /**
  * Base class of implementation.
  * 
